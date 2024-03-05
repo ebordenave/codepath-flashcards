@@ -7,24 +7,27 @@
 
 .wrapper {
   border: 1px solid red;
-  height: 600px;
-  width: 800px;
+  height: 520px;
+  width: 580px;
   display: grid;
-  row-gap: 10px;
+  /*row-gap: 10px;*/
   padding: 10px;
+  grid-template-rows: 30% 60% 10%;
+  color:white;
+  /*background-color: red;*/
+
 }
 
 .header {
-  border: 1px solid blue;
-  height: 40%;
+  background-color: blue;
 }
 
 .flashcardContainer {
-  border: 1px solid green;
-
+  /*background-color: green;*/
+  display: grid;
+  place-items: center;
 }
 
 .arrowContainer {
-  border: 1px solid orange;
-  height: 30%;
+  margin: auto;
 }
