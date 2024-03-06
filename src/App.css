@@ -1,32 +1,27 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  /*padding: 2rem;*/
-  text-align: center;
-}
+/*#root {*/
+/*  max-width: 1280px;*/
+/*  margin: 0 auto;*/
+/*  !*padding: 2rem;*!*/
+/*  text-align: center;*/
+/*}*/
+
 
 .wrapper {
   border: 1px solid red;
   height: 520px;
   width: 580px;
   display: grid;
-  /*row-gap: 10px;*/
+  row-gap: 10px;
   padding: 10px;
-  grid-template-rows: 30% 60% 10%;
-  color:white;
-  /*background-color: red;*/
-
+  grid-template-rows: 100px 300px 77px;
+  color:black;
+  text-align: center;
 }
 
 .header {
-  background-color: blue;
+  background-color: white;
 }
 
-.flashcardContainer {
-  /*background-color: green;*/
-  display: grid;
-  place-items: center;
-}
 
 .arrowContainer {
   margin: auto;
