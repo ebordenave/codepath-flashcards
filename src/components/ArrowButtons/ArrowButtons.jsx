@@ -1,10 +1,10 @@
 import "./ArrowButtons.css"
 
-export const ArrowButtons = () => {
+export const ArrowButtons = ({prev, next}) => {
   return (
     <>
-      <button>&#8592;</button>
-      <button>&#8594;</button>
+      <button onClick={prev}>&#8592;</button>
+      <button onClick={next}>&#8594;</button>
     </>
   )
 }
