@@ -33,6 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 50px;
 }
 
 
@@ -44,3 +45,37 @@
     transform: rotateY(180deg);
     background-color: #535bf2;
 }
+
+.green {
+    .front {
+        background-color: #E0FFCC;
+        color: #549247;
+    }
+    .back {
+        background-color: #549247;
+        color: #E0FFCC;
+    }
+}
+
+.yellow {
+    .front {
+        background-color: #FFF8B8;
+        color: #b3b08b;
+    }
+    .back {
+        background-color: #b3b08b;
+        color: #FFF8B8;
+    }
+}
+
+.red {
+    .front {
+        background-color: #FFD6C9;
+        color: #ca644c;
+    }
+    .back {
+        background-color: #ca644c;
+        color: #FFD6C9;
+    }
+}
+

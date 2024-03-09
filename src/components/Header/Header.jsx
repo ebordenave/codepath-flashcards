@@ -5,9 +5,9 @@ export const Header = ({count}) => {
   return (
     <>
       <h2>
-        So you want to be a Software Engineer at Google? Ace your Coding Interview, Right Now!
+        So you want to be a Software Engineer at a Big Tech Company? Ace your Coding Interview!
       </h2>
-      <p>{`Number of Cards: ${count}`}</p>
+      <h4>Lets study Data Structures! {`Number of Cards: ${count}`}</h4>
       </>
   )
 }

@@ -1,9 +1,9 @@
 button {
-    color: white;
+    color: black;
     margin: 8px;
-    background-color: black;
+    background-color: #eee;
     border-radius: 8px;
-    border: 1px solid transparent;
+    border: 1px solid #ccc;
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
@@ -12,7 +12,7 @@ button {
     transition: border-color 0.25s;
 }
 
-button:focus,
-button:focus-visible {
-    outline: 4px auto white;
+button:hover {
+    background-color: #ccc;
+    border-color: #ccc;
 }
