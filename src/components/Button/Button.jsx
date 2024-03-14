@@ -1,6 +1,6 @@
-import "./ArrowButtons.css"
+import "./Button.css"
 
-export const ArrowButtons = ({prev, next}) => {
+export const Button = ({character, prev, next}) => {
   return (
     <>
       <button onClick={prev}>&#8592;</button>

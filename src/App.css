@@ -7,12 +7,12 @@
 
 
 .wrapper {
-  height: 520px;
+  height: 620px;
   width: 580px;
   display: grid;
   row-gap: 10px;
   padding: 10px;
-  grid-template-rows: 100px 300px 77px;
+  grid-template-rows: 100px 300px 50px 77px;
   color:black;
   text-align: center;
 }
