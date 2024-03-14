@@ -16,6 +16,11 @@ function App() {
   const [inputValue, setInputValue] = useState('')
   const [isValid, setIsValid] = useState(false)
 
+  const [cardData, setCardData] = useState(CardData);
+
+
+
+
   const handleChange = (e) => {
     setInputValue(e.target.value)
   }
@@ -25,8 +30,8 @@ function App() {
 
     setSubmitted(true)
 
-    setIsValid(inputValue === CardData[currentIndex].back)
-    if(inputValue.toLowerCase() === CardData[currentIndex].back.toLowerCase()) {
+    setIsValid(inputValue === cardData[currentIndex].back)
+    if(inputValue.toLowerCase() === cardData[currentIndex].back.toLowerCase()) {
       setFlipped(true)
     } else {
       setFlipped(false)
@@ -40,52 +45,42 @@ function App() {
   }
 
   const nextCard = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1 ) % CardData.length)
+    setCurrentIndex((prevIndex) => (prevIndex + 1 ) % cardData.length)
+    setFlipped(false)
+  }
+
+  const prevCard = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length)
     setFlipped(false)
   }
 
   const shuffleDeck = () => {
-    const shuffledDeck = [...CardData]
-    let currentIndex = shuffledDeck.length-1
-    let randomIndex
+    let shuffledDeck = [...cardData];
+    let currentIndex = shuffledDeck.length - 1;
+    let randomIndex;
 
-    while(currentIndex >= 0){
-      randomIndex = Math.floor(Math.random() * (currentIndex + 1))
-      currentIndex--
-
-      [shuffledDeck[currentIndex],shuffledDeck[randomIndex]] = [shuffledDeck[randomIndex],shuffledDeck[currentIndex]]
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+      [shuffledDeck[currentIndex], shuffledDeck[randomIndex]] = [shuffledDeck[randomIndex], shuffledDeck[currentIndex]];
+      currentIndex--;
     }
-
-    setCurrentIndex(0)
-    setFlipped(false)
-    setSubmitted(false)
-    setInputValue('')
-    setIsValid(false)
-    return shuffledDeck
-  }
-
-  // create a prev function that will iterate through an array of objects
-  // the logic is an anonymous function, given the index var
-  // subtract 1 and then mod CardData.length
-  const prevCard = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + CardData.length) % CardData.length)
-    setFlipped(false)
-  }
+    setCardData(shuffledDeck);
+  };
 
   return (
       <div className="wrapper">
         <section className="header">
-          <Header currentIndex={currentIndex + 1} count={CardData.length}/>
+          <Header currentIndex={currentIndex + 1} count={cardData.length}/>
         </section>
         <section className="flashcardContainer">
-          <FlashCard submitted={submitted} flipped={flipped} front={CardData[currentIndex].front} back={CardData[currentIndex].back} difficulty={CardData[currentIndex].difficulty} image={CardData[currentIndex].image}/>
+          <FlashCard submitted={submitted} flipped={flipped} front={cardData[currentIndex].front} back={cardData[currentIndex].back} difficulty={cardData[currentIndex].difficulty} image={cardData[currentIndex].image}/>
         </section>
         <section className="arrowContainer">
           <Button prev={prevCard} next={nextCard}/>
-          <button onClick={()=> shuffleDeck(CardData)}>Shuffle</button>
+          <button onClick={shuffleDeck}>Shuffle</button>
         </section>
         <section className="guessArea">
-          <GuessSection value={inputValue}  onChange={handleChange} placeholder={''} className={isValid ? 'valid' : 'invalid'} onKeyDown={handleKeyDown}/>
+        <GuessSection value={inputValue} onChange={handleChange} placeholder={''} className={isValid ? 'valid' : 'invalid'} onKeyDown={handleKeyDown} style={isValid ? { border: '1px solid green' } : { border: '1px solid red' }} />
           <SubmitButton  onSubmit={handleSubmit} disable={flipped}/>
         </section>
       </div>

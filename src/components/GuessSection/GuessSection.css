@@ -10,11 +10,10 @@
         font-family: inherit;
         cursor: pointer;
         transition: border-color 0.25s;
-    
-
 }
 
 .submitButton:hover {
     background-color: #ccc;
     border-color: #ccc;
 }
+
