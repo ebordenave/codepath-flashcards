@@ -1,10 +1,12 @@
-export const SubmitButton = (props) => {
+export const SubmitButton = ({onSubmit, disabled}) => {
   return (
     <>
-    <button onClick={props.onSubmit} disabled={props.disabled}>
+    <button onClick={onSubmit} disabled={disabled}>
       Submit Guess
     </button></>
   )
 }
 
 export default SubmitButton
+
+// TODO ENTER KEY RESETS THE PAGE, LOOK INTO THIS
