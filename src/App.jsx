@@ -1,105 +1,89 @@
-import {useEffect, useState} from 'react';
-import {FlashCard} from "./components/FlashCard/FlashCard.jsx";
-import {Button} from "./components/Button/Button.jsx";
-import {Header} from "./components/Header/Header.jsx";
+import { useEffect, useState } from 'react';
+import { FlashCard } from "./components/FlashCard/FlashCard.jsx";
+import { Button } from "./components/Button/Button.jsx";
+import { Header } from "./components/Header/Header.jsx";
 import CardData from "./CardData.js";
 import './App.css';
-import {GuessSection} from "./components/GuessSection/GuessSection.jsx";
-import {SubmitButton} from "./components/SubmitButton/SubmitButton.jsx";
+import { GuessSection } from "./components/GuessSection/GuessSection.jsx";
+import { SubmitButton } from "./components/SubmitButton/SubmitButton.jsx";
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const [submitted, setSubmitted] = useState(false)
-  const [flipped, setFlipped] = useState(false)
-
-  const [inputValue, setInputValue] = useState('')
-  const [isValid, setIsValid] = useState(false)
-
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const [flipped, setFlipped] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isValid, setIsValid] = useState(false);
   const [cardData, setCardData] = useState(CardData);
-
-  const [errors, setErrors] = useState({})
-  const [streak, setStreak] = useState(0)
-
-  const [lastCorrectIndex, setLastCorrectIndex] = useState(null);
-  const [longestStreak, setLongestStreak] = useState(0)
-
+  const [errors, setErrors] = useState({});
+  const [streak, setStreak] = useState(0);
+  const [largestStreak, setLargestStreak] = useState(0);
 
   const validateValues = (inputValue) => {
-    let errors = {}
-    if(inputValue.toLowerCase() !== CardData[currentIndex].back.toLowerCase()) {
-      errors.back = "incorrect answer"
+    let errors = {};
+    if (inputValue.toLowerCase() !== cardData[currentIndex].back.toLowerCase()) {
+      errors.back = "incorrect answer";
     }
-    return errors
-  }
+    return errors;
+  };
 
   const handleChange = (e) => {
-    setInputValue(e.target.value)
-  }
+    setInputValue(e.target.value);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setErrors(validateValues(inputValue))
-    setSubmitted(true)
+    e.preventDefault();
+    setErrors(validateValues(inputValue));
+    setSubmitted(true);
 
-    const isCorrect = inputValue.toLowerCase() === cardData[currentIndex].back.toLowerCase()
+    const isCorrect = inputValue.toLowerCase() === cardData[currentIndex].back.toLowerCase();
 
-    setIsValid(isCorrect)
-    updateStreak(isCorrect)
+    updateStreak(isCorrect); // Directly call updateStreak with the correctness of the current submission
 
-    if(isCorrect) {
-      setFlipped(true)
+    if (isCorrect) {
+      setIsValid(true); // Update isValid only if the answer is correct
+      setFlipped(true);
+      updateLargestStreak();
     } else {
-      setFlipped(false)
+      setIsValid(false); // Update isValid only if the answer is incorrect
+      setFlipped(false);
     }
-  }
+  };
 
   const updateStreak = (isCorrect) => {
     if (isCorrect) {
-      if (currentIndex !== lastCorrectIndex) {
-        const newStreak = streak + 1;
-        setStreak(newStreak);
-        setLongestStreak(Math.max(newStreak, longestStreak));
-        setLastCorrectIndex(currentIndex);
-      }
+      setStreak((prevStreak) => prevStreak + 1);
     } else {
       setStreak(0);
     }
-  }
+  };
 
-  // const finishSubmit = () => {
-  //   console.log(inputValue);
-  // };
-  //
-  // useEffect(()=> {
-  //   if (Object.keys(errors).length === 0 && submitted){
-  //     finishSubmit()
+  const updateLargestStreak = () => {
+    setLargestStreak((prevLargestStreak) => Math.max(prevLargestStreak, streak + 1));
+  };
+
+  // useEffect(() => {
+  //   if (isValid) {
+  //     updateStreak(true);
+  //   } else {
+  //     updateStreak(false);
   //   }
-  // }, [errors])
-
-  useEffect(() => {
-    if (isValid) {
-      updateStreak(true);
-    } else {
-      updateStreak(false)
-    }
-  }, [isValid]);
+  // }, [isValid]);
 
   const handleKeyDown = (e) => {
-    if(e.key === 'Enter'){
-      handleSubmit(e)
+    if (e.key === 'Enter') {
+      handleSubmit(e);
     }
-  }
+  };
 
   const nextCard = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1 ) % cardData.length)
-    setFlipped(false)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+    setFlipped(false);
+  };
 
   const prevCard = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length)
-    setFlipped(false)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length);
+    setFlipped(false);
+  };
 
   const shuffleDeck = () => {
     let shuffledDeck = [...cardData];
@@ -115,43 +99,40 @@ function App() {
   };
 
   return (
-      <div className="wrapper">
-        <section className="header">
-          <Header currentIndex={currentIndex + 1} count={cardData.length}/>
-        </section>
-        <section className="flashcardContainer">
-          <FlashCard submitted={submitted} flipped={flipped} front={cardData[currentIndex].front} back={cardData[currentIndex].back} difficulty={cardData[currentIndex].difficulty} image={cardData[currentIndex].image}/>
-        </section>
-        <section className="arrowContainer">
-          <Button prev={prevCard} next={nextCard}/>
-          <button onClick={shuffleDeck}>Shuffle</button>
-        </section>
-        <section className="guessArea">
-          <GuessSection
-            value={inputValue}
-            onChange={handleChange}
-            placeholder={''}
-            className={isValid ? 'valid' : 'invalid'}
-            onKeyDown={handleKeyDown}
-            style={{ border: errors.back ? "2px solid red" : !errors.back && submitted ? "2px solid green" : "2px solid #ccc" }}
-          />
-          <SubmitButton onSubmit={(e)=> {
-            handleSubmit(e)
-            updateStreak(isValid)
-          }} disable={flipped} />
-          <div>
-            {Object.keys(errors).length === 0 && submitted ? (
-              <span className="correct">Correct ✓</span>
-            ) : null}
-            {Object.keys(errors).length !== 0 && submitted ? (
+    <div className="wrapper">
+      <section className="header">
+        <Header currentIndex={currentIndex + 1} count={cardData.length} />
+      </section>
+      <section className="flashcardContainer">
+        <FlashCard submitted={submitted} flipped={flipped} front={cardData[currentIndex].front} back={cardData[currentIndex].back} difficulty={cardData[currentIndex].difficulty} image={cardData[currentIndex].image} />
+      </section>
+      <section className="arrowContainer">
+        <Button prev={prevCard} next={nextCard} />
+        <button onClick={shuffleDeck}>Shuffle</button>
+      </section>
+      <section className="guessArea">
+        <GuessSection
+          value={inputValue}
+          onChange={handleChange}
+          placeholder={''}
+          className={isValid ? 'valid' : 'invalid'}
+          onKeyDown={handleKeyDown}
+          style={{ border: errors.back ? "2px solid red" : !errors.back && submitted ? "2px solid green" : "2px solid #ccc" }}
+        />
+        <SubmitButton onSubmit={handleSubmit} disable={flipped} />
+        <div>
+          {Object.keys(errors).length === 0 && submitted ? (
+            <span className="correct">Correct ✓</span>
+          ) : null}
+          {Object.keys(errors).length !== 0 && submitted ? (
             <span className="incorrect">Incorrect &#10008;</span>
           ) : null}
-          </div>
-          <div>Current Streak: {streak}</div>
-          <div>Longest Streak: {longestStreak}</div>
-        </section>
-      </div>
-  )
+        </div>
+        <div>Current Streak: {streak}</div>
+        <div>Longest Streak: {largestStreak}</div>
+      </section>
+    </div>
+  );
 }
 
-export default App
+export default App;
