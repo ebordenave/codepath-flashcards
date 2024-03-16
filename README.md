@@ -1,4 +1,4 @@
-# Web Development Project 3 - *Name of App Here*
+# Web Development Project 3 - *Flashcards Pt 2*
 
 Submitted by: **Edward Bordenave**
 
