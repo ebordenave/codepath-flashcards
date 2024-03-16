@@ -17,3 +17,11 @@
     border-color: #ccc;
 }
 
+.GuessSection input[type="text"] {
+        padding: 8px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+
+}
+

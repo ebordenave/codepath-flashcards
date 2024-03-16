@@ -8,5 +8,3 @@ export const SubmitButton = ({onSubmit, disabled}) => {
 }
 
 export default SubmitButton
-
-// TODO ENTER KEY RESETS THE PAGE, LOOK INTO THIS

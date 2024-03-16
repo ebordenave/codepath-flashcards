@@ -27,11 +27,11 @@ const CardData = [
       " organization of elements. A ____" +
       " consists of nodes connected by edges, with one node being the root" +
       " and all other nodes forming subtrees.", difficulty: "medium", image: "placeholder", title: "Tree"},
-  { back: "What is a Trie?", front: "A trie, also known as a prefix tree, is" +
-      " a specialized tree data structure used for the efficient retrieval of strings. Tries store characters" +
+  { back: "Trie", front: "A ____, also known as a prefix tree, is" +
+      " a specialized tree data structure used for the efficient retrieval of strings. ____'s store characters" +
       " of a string as nodes, with each edge representing a character.", difficulty: "hard", image: "placeholder", title: "Trie"},
-  { back: "What is a Hash Table?", front: "Hash Tables, also known as hash" +
-      " maps, are data structures that provide fast retrieval of values" +
+  { back: "Hash Table", front: "A ___________, also known as a hash" +
+      " map, is a data structure that provide fast retrieval of values" +
       " based on keys. They use a hashing function to map keys to indexes in" +
       " an array, allowing for constant-time access in the average case.", difficulty: "easy", image: "placeholder", title: "Hash Table"},
 

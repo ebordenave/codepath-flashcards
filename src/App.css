@@ -26,3 +26,12 @@
   margin: auto;
 }
 
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+
