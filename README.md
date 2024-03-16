@@ -1,4 +1,4 @@
-# Web Development Project 2 - Data Structures Flashcard App
+# Web Development Project 2 - *Name of App Here*
 
 Submitted by: **Edward Bordenave**
 
@@ -31,19 +31,20 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented required features:
 
 <img src='https://imgur.com/a/d84zuuc' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-https://imgur.com/a/d84zuucnp
+
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...LiceCAP
+<br></br>
+<a>https://imgur.com/a/QoNbem0</a>
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
 [peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
-
-I faced a few challenges while developing this app. I wanted to implement the images for each data structure as a visual aid to the user. If you look at the repo, you'll see an images folder and props being passed. The issue that I came across with had to do with pathing. I could not determine how to path properly from my CardData Object to component itself.
-Another issue I faced that was that I wanted to implement responsiveness. I knew about container queries and media queries but I wanted to try clamp(). Based on MDN it seemed straight forward enough. I confirmed that it would work in my browser and then tried the code. It did not appear to work. So I am hoping on the next project I will have figured it out or use an alternative like container or media query.
-
+LOTS of issues-- I spent hours on figuring out the current/longest streaks.
+I figured it out and that it was my useEffect hook causing my current streak to double
+This was a significantly more difficult project. Connecting components together and having expected behaviors between them was a challenge but overall I enjoyed this.
 ## License
 
     Copyright [yyyy] [name of copyright owner]

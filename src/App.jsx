@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FlashCard } from "./components/FlashCard/FlashCard.jsx";
 import { Button } from "./components/Button/Button.jsx";
 import { Header } from "./components/Header/Header.jsx";
@@ -37,14 +37,14 @@ function App() {
 
     const isCorrect = inputValue.toLowerCase() === cardData[currentIndex].back.toLowerCase();
 
-    updateStreak(isCorrect); // Directly call updateStreak with the correctness of the current submission
+    updateStreak(isCorrect);
 
     if (isCorrect) {
-      setIsValid(true); // Update isValid only if the answer is correct
+      setIsValid(true);
       setFlipped(true);
       updateLargestStreak();
     } else {
-      setIsValid(false); // Update isValid only if the answer is incorrect
+      setIsValid(false);
       setFlipped(false);
     }
   };
