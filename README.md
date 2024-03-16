@@ -29,6 +29,7 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+<a>https://www.loom.com/share/05300d1672714370a45da015a5feece1?sid=d9ddcea8-2bd5-4254-9479-a8ab6fa196e1</a>
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
